@@ -1,7 +1,7 @@
-import { getPhoto } from "@/lib/api";
-import Image from "next/image";
+import { getPhoto, getContents } from "@/lib/api";
 import { notFound } from "next/navigation";
 import Modal from "@/components/Modal";
+import ModalCard from "@/components/ModalCard";
 
 interface ModalImageProps {
   params: {
@@ -14,7 +14,7 @@ interface PostProps {
 }
 
 export async function generateStaticParams() {
-  const { contents } = await getPhoto();
+  const { contents } = await getContents();
 
   const paths = contents.map((post: PostProps) => {
     return {
@@ -35,15 +35,7 @@ export default async function ModalImage({ params: { id } }: ModalImageProps) {
   return (
     <>
       <Modal>
-        <div className="grid grid-cols-1 gap-1 py-4">
-          <Image
-            alt={post.id}
-            className="mx-auto size-full rounded-lg object-cover"
-            height={800}
-            src={post.photo.url}
-            width={800}
-          />
-        </div>
+        <ModalCard post={post} />
       </Modal>
     </>
   );

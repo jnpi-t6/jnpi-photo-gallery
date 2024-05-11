@@ -7,10 +7,20 @@ export const client = createClient({
   apiKey: process.env.API_KEY || "",
 });
 
+// ルーティングのためにリストを取得
+export async function getContents(queries?: MicroCMSQueries) {
+  const photoData = await client.getList<PhotoDataProps>({
+    endpoint: "photo",
+    queries,
+  });
+  return photoData;
+}
+
 // コンテンツを取得
-export async function getPhoto(id?: string, queries?: MicroCMSQueries) {
+export async function getPhoto(contentId?: string, queries?: MicroCMSQueries) {
   const photoData = await client.get<PhotoDataProps>({
     endpoint: "photo",
+    contentId,
     queries,
   });
   return photoData;

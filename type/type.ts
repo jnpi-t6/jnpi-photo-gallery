@@ -6,9 +6,9 @@ export type PhotoProps = {
   tags: TagsProps[];
 } & MicroCMSDate;
 
-export type PhotoDataProps = {
+export interface PhotoDataProps extends PhotoProps {
   contents: PhotoProps[];
-};
+}
 
 export type TagsProps = {
   id: string;
