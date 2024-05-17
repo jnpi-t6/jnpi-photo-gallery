@@ -31,11 +31,6 @@ export async function Menu(props: Props) {
               </DropdownMenuRadioItem>
             </Link>
           ))}
-          <Link href={"/unsplash"}>
-            <DropdownMenuRadioItem value={"unsplash"}>
-              unsplash
-            </DropdownMenuRadioItem>
-          </Link>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { PhotoCards } from "@/components/PhotoCards";
 import { getTags, getTagsPhoto } from "@/lib/api";
+import LoadMore from "@/components/LoadMore";
 
 interface TagsPageProps {
   params: { id: string };
@@ -28,11 +28,7 @@ export default async function TagsPage({ params: { id } }: TagsPageProps) {
 
   return (
     <>
-      <div className="mx-auto max-w-7xl">
-        <section className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
-          <PhotoCards contents={contents} />
-        </section>
-      </div>
+      <LoadMore contents={contents} />
     </>
   );
 }

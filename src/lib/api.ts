@@ -17,13 +17,20 @@ export async function getContents(queries?: MicroCMSQueries) {
 }
 
 // コンテンツを取得
-export async function getPhoto(contentId?: string, queries?: MicroCMSQueries) {
-  const photoData = await client.get<PhotoDataProps>({
-    endpoint: "photo",
-    contentId,
-    queries,
-  });
-  return photoData;
+export async function getPhoto(contentId?: string) {
+  try {
+    const photoData = await client.get<PhotoDataProps>({
+      endpoint: "photo",
+      contentId,
+      queries: {
+        limit: 100,
+      },
+    });
+    return photoData;
+  } catch (error) {
+    console.error("Failed to fetch photos:", error);
+    throw error;
+  }
 }
 
 // タグの名前を取得
@@ -41,6 +48,7 @@ export async function getTagsPhoto(id: string) {
     endpoint: "photo",
     queries: {
       filters: `tags[contains]${id}`,
+      limit: 100,
     },
   });
   return photoData;

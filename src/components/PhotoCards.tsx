@@ -17,9 +17,9 @@ export async function PhotoCards({ contents }: ContentsProps) {
               <Image
                 alt={photo.id}
                 className="object-cover "
+                width={400}
                 height={300}
                 src={photo.photo.url ?? "/placeholder.svg"}
-                width={400}
               />
             </Link>
             <CardContent className="flex flex-wrap gap-2 p-4">
