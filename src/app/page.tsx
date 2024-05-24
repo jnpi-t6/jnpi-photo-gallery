@@ -1,9 +1,13 @@
-import GridPhotoSection from "@/components/GridPhotoSection";
+// app/page.js
+import LoadMoreByFetch from "@/components/LoadMoreByFetch";
+import { getPhoto } from "@/lib/api";
 
-export default function Home() {
+export default async function Page() {
+  const initialContents = await getPhoto(undefined, 8, 0);
+
   return (
-    <>
-      <GridPhotoSection />
-    </>
+    <div className="mx-auto max-w-7xl">
+      <LoadMoreByFetch initialContents={initialContents.contents} />
+    </div>
   );
 }

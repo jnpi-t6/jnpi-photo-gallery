@@ -17,13 +17,18 @@ export async function getContents(queries?: MicroCMSQueries) {
 }
 
 // コンテンツを取得
-export async function getPhoto(contentId?: string) {
+export async function getPhoto(
+  contentId?: string,
+  limit?: number,
+  offset?: number
+) {
   try {
     const photoData = await client.get<PhotoDataProps>({
       endpoint: "photo",
       contentId,
       queries: {
-        limit: 100,
+        limit: limit,
+        offset: offset,
       },
     });
     return photoData;
@@ -43,12 +48,17 @@ export async function getTags(queries?: MicroCMSQueries) {
 }
 
 // タグ別にコンテンツを取得
-export async function getTagsPhoto(id: string) {
+export async function getTagsPhoto(
+  id: string,
+  limit?: number,
+  offset?: number
+) {
   const photoData = await client.get<PhotoDataProps>({
     endpoint: "photo",
     queries: {
       filters: `tags[contains]${id}`,
-      limit: 100,
+      limit: limit,
+      offset: offset,
     },
   });
   return photoData;

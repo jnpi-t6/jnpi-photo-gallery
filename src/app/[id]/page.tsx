@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTags, getTagsPhoto } from "@/lib/api";
-import LoadMore from "@/components/LoadMore";
+import LoadMoreByFetch from "@/components/LoadMoreByFetch";
 
 interface TagsPageProps {
   params: { id: string };
@@ -21,14 +21,14 @@ export async function generateStaticParams() {
 }
 
 export default async function TagsPage({ params: { id } }: TagsPageProps) {
-  const { contents } = await getTagsPhoto(id);
+  const { contents } = await getTagsPhoto(id, 8, 0);
   if (!contents) {
     notFound();
   }
 
   return (
     <>
-      <LoadMore contents={contents} />
+      <LoadMoreByFetch initialContents={contents} id={id} />
     </>
   );
 }

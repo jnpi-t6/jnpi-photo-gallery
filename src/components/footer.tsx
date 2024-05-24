@@ -11,7 +11,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <Link
               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
+              href="https://twitter.com/jnpi_t6"
             >
               <TwitterIcon className="size-5" />
               <span className="sr-only">Twitter</span>
